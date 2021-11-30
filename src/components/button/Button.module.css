@@ -6,4 +6,5 @@
   padding: 3px 8px;
   font-weight: bold;
   box-shadow: 2px 2px 2px gray;
+  text-transform: capitalize;
 }
