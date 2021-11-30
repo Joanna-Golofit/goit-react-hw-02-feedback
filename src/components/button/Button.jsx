@@ -7,7 +7,9 @@ class Button extends Component {
     return (
       <>
         {/* <button>Good</button> */}
-        <button className={style.button}>{this.props.label}</button>
+        <button className={style.button} onClick={this.props.onClick}>
+          {this.props.label}
+        </button>
       </>
     );
   }
