@@ -12,12 +12,20 @@ class Statistics extends Component {
   };
 
   handleClick = (evt) => {
-    
-     this.setState((state) => ({
+    this.setState((state) => ({
       //  ...state,
-       [evt.target.innerHTML]: state[evt.target.innerHTML] + 1,
-     }));
-    
+      [evt.target.innerHTML]: state[evt.target.innerHTML] + 1,
+    }));
+  };
+
+  countTotalFeedback = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const percentage = (this.state.good / this.countTotalFeedback()) * 100;
+    return percentage.toFixed();;
+    // return percentage;
   };
 
   render() {
@@ -35,6 +43,8 @@ class Statistics extends Component {
           <li>Good: {good}</li>
           <li>Neutral: {neutral}</li>
           <li>Bad: {bad}</li>
+          <li>Total: {this.countTotalFeedback()}</li>
+          <li>Positive feedback: {this.countTotalFeedback() && this.countPositiveFeedbackPercentage()}%</li>
         </ul>
       </div>
     );
@@ -46,7 +56,7 @@ export default Statistics;
 
 
 
-//==============z zapiskami
+//==============krok 1 z zapiskami
 // class Statistics extends Component {
 //   state = {
 //     good: 0,
