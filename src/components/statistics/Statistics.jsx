@@ -19,7 +19,13 @@ class Statistics extends Component {
   };
 
   countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+    const values = Object.values(this.state);
+    // let total = 0;
+// console.log(values);
+    return values.reduce((acc, value) => acc += value);
+    
+    // return this.state.good + this.state.neutral + this.state.bad;
+    // return this.state.reduce((acc, s) => acc + s, 0);?????
   };
 
   countPositiveFeedbackPercentage = () => {
