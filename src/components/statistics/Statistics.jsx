@@ -1,6 +1,5 @@
 //rce
 import style from "./Statistics.module.css";
-
 import React, { Component } from "react";
 import Button from "../button/Button";
 
@@ -58,8 +57,6 @@ class Statistics extends Component {
 }
 
 export default Statistics;
-
-
 
 
 //==============krok 1 z zapiskami

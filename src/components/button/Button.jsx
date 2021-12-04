@@ -1,6 +1,8 @@
 //rce
 import React, { Component } from 'react'
 import style from "./Button.module.css"
+import PropTypes from "prop-types";
+
 
 class Button extends Component {
   render() {
@@ -14,5 +16,10 @@ class Button extends Component {
     );
   }
 }
+
+Button.propTypes = {
+  label: PropTypes.string,
+  onClick: PropTypes.func,
+};
 
 export default Button
