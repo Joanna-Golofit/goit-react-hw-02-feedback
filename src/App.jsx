@@ -1,22 +1,59 @@
 // import Button from "./components/button/Button";
+import React, { Component } from "react";
 import Statistics from "./components/statistics/Statistics";
+import Section from "./components/section/Section";
+import FeedbackOptions from "./components/feedbackOptions/FeedbackOptions";
+import "./App.css";
 
-const name = "Joanna";
-const element = <p>Witaj, {name}</p>;
 
-function App() {
-  return (
-    <>   
-      {element}
-      {/* <h1>Please leave feedback</h1>
-      <Button label="Good" />
-      <Button label="Neutral" />
-      <Button label="Bad" /> */}
-      {/* <Button />
-      <Button /> */}
-      <Statistics/>
-    </>
-  );
+class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+
+  changeState = (evt) => {
+    this.setState((state) => ({
+      //  ...state,
+      [evt.target.innerHTML]: state[evt.target.innerHTML] + 1,
+      // np:  good: state[good] + 1 =>
+      //good: 0 + 1
+    }));
+  };
+
+  countTotalFeedback = () => {
+    const values = Object.values(this.state);
+    return values.reduce((acc, value) => (acc += value));
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const percentage = (this.state.good / this.countTotalFeedback()) * 100;
+    return percentage.toFixed();
+  };
+
+  render() {
+    return (
+      <>
+        <Section title="Please Leave Feedback">
+          <FeedbackOptions
+            onLeaveFeedback={this.changeState}
+            options={["good", "neutral", "bad"]}
+          ></FeedbackOptions>
+        </Section>
+
+        <Section title="Statistics">
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
+      </>
+    );
+  }
 }
 
 export default App;
